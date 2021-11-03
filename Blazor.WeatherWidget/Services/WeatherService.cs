@@ -2,10 +2,11 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Blazor.WeatherWidget.Models;
+using System.Net.Http.Json;
 
 namespace Blazor.WeatherWidget.Services
 {
-    public class WeatherService
+    public class WeatherService : IWeatherService
     {
         private readonly HttpClient _httpClient;
 
@@ -14,7 +15,7 @@ namespace Blazor.WeatherWidget.Services
             _httpClient = httpClient;
         }
 
-        public async Task<Root> Get(string query, string key)
+        public async Task<WeatherGetResult> Get(string query, string key)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"http://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}");
 
@@ -23,11 +24,10 @@ namespace Blazor.WeatherWidget.Services
 
             var response = await _httpClient.SendAsync(request);
 
-            var result = new Root();
+            var result = new WeatherGetResult();
             if (response.IsSuccessStatusCode)
             {
-                var responseString = await response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<Root>(responseString);
+                result = await response.Content.ReadFromJsonAsync<WeatherGetResult>();
             }
 
             return result;

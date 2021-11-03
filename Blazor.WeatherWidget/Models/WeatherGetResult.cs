@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Blazor.WeatherWidget.Models
 {
-    public class Root
+    public class WeatherGetResult
     {
         [JsonProperty("coord")]
         public Coord Coord { get; set; }

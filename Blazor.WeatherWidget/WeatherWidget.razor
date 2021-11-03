@@ -1,144 +1,188 @@
 ﻿@using Blazor.WeatherWidget.Services
 @using Blazor.WeatherWidget.Models;
+@using Blazor.WeatherWidget.Settings
+@using Microsoft.Extensions.Options
 
 
-@inject WeatherService service
+@inject IWeatherService service
+@inject IOptions<WeatherWidgetSettings> weatherWidgetSettings
 
-
-@if (root == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <div class="container">
-        <div class="row align-items-center align-content-center">
-            <div class="col-12 fs-4">
-                Current Weather for @root.Name, @root.Sys.Country
+@{
+    RenderFragment bootstrapTemplate =
+    @<div class="container">
+        @if (result != null && result.Base != null)
+        {
+            <div class="row align-items-center align-content-center">
+                <div class="col-12 fs-4">
+                    Current Weather for @result.Name, @result.Sys.Country
+                </div>
             </div>
-        </div>
-        <div class="row align-items-center align-content-end">
-            <div class="col-7">
+            <div class="row align-items-center align-content-end">
+                <div class="col-7">
 
+                </div>
+                <div class="col-5 small text-secondary">
+                    @result.Custom_Dt
+                </div>
+            </div>        
+            <div class="row align-items-center">
+                <div class="col-3">
+                    <img src="http://openweathermap.org/img/wn/@result.Weather[0].Icon@@2x.png" width="90" />
+                </div>
+                <div class="col-3 fs-3">
+                    @Math.Round(result.Main.Custom_Temp_Celcius, 1)&nbsp;°C
+                </div>
+                <div class="col-6 small">
+                    @result.Weather[0].Custom_Description with @result.Wind.Custom_WindName coming from @result.Wind.Custom_Direction
+                </div>
             </div>
-            <div class="col-5 small text-secondary">
-                @root.Custom_Dt
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-3">
-                <img src="http://openweathermap.org/img/wn/@root.Weather[0].Icon@@2x.png" width="90" />
-            </div>
-            <div class="col-3 fs-3">
-                @Math.Round(@root.Main.Custom_Temp_Celcius, 1)&nbsp;°C
-            </div>
-            <div class="col-6 small">
-                @root.Weather[0].Custom_Description with @root.Wind.Custom_WindName coming from @root.Wind.Custom_Direction
-            </div>
-        </div>
-        <div class="row">
-            <div class="col col-12">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-5 small">
-                            Feels Like
-                        </div>
-                        <div class="col-1 small">
-                            :
-                        </div>
-                        <div class="col-3 small">
-                            @Math.Round(@root.Main.Custom_FeelsLike_Celcius, 1)&nbsp;°C
-                        </div>
-                        <div class="col-2 small">
+            <div class="row">
+                <div class="col col-12">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-5 small">
+                                Feels Like
+                            </div>
+                            <div class="col-1 small">
+                                :
+                            </div>
+                            <div class="col-3 small">
+                                @Math.Round(result.Main.Custom_FeelsLike_Celcius, 1)&nbsp;°C
+                            </div>
+                            <div class="col-2 small">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5 small">
-                            Humidity
-                        </div>
-                        <div class="col-1 small">
-                            :
-                        </div>
-                        <div class="col-3 small">
-                            @root.Main.Humidity%
-                        </div>
-                        <div class="col-2 small">
+                        <div class="row">
+                            <div class="col-5 small">
+                                Humidity
+                            </div>
+                            <div class="col-1 small">
+                                :
+                            </div>
+                            <div class="col-3 small">
+                                @result.Main.Humidity%
+                            </div>
+                            <div class="col-2 small">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5 small">
-                            Cloud Coverage
-                        </div>
-                        <div class="col-1 small">
-                            :
-                        </div>
-                        <div class="col-3 small">
-                            @root.Clouds.All%
-                        </div>
-                        <div class="col-2 small">
+                        <div class="row">
+                            <div class="col-5 small">
+                                Cloud Coverage
+                            </div>
+                            <div class="col-1 small">
+                                :
+                            </div>
+                            <div class="col-3 small">
+                                @result.Clouds.All%
+                            </div>
+                            <div class="col-2 small">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-5 small">
-                            Wind Speed
-                        </div>
-                        <div class="col-1 small">
-                            :
-                        </div>
-                        <div class="col-4 small">
-                            @root.Wind.Speed m/s
-                        </div>
-                        <div class="col-2 small">
+                        <div class="row">
+                            <div class="col-5 small">
+                                Wind Speed
+                            </div>
+                            <div class="col-1 small">
+                                :
+                            </div>
+                            <div class="col-4 small">
+                                @result.Wind.Speed m/s
+                            </div>
+                            <div class="col-2 small">
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row align-items-center align-content-end">
+        }
+            <div class="row align-items-center align-content-end">
             <div class="col-6">
-                <div role="alert" class="text-danger small" style="visibility:@WarningVisibility">
+                <div role="alert" class="text-danger small" style="visibility:@(result.Base == null ? "visible" : "hidden" )">
                     Place not found!
                 </div>
             </div>
             <div class="col-4 align-content-end">
-                <input class="form-control form-control-sm" value="@CurrentCity" type="text" placeholder="City / Place" @oninput="@((e) => { CurrentCity = (string)e.Value;})">
+                <input class="form-control form-control-sm" value="@CurrentCity" type="text" placeholder="City / Place" @oninput="@(OnCurrentCityChanged)">
             </div>
             <div class="col-2 small">
                 <button class="btn btn-info" type="button" @onclick="OnSearchNewCity">Go!</button>
             </div>
         </div>
-    </div>
+    </div>;
+    }
 
+@if (result == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    switch (Template)
+    {
+        case WeatherWidgetTemplate.DefaultBootStrap:
+            @bootstrapTemplate
+            break;
+        case WeatherWidgetTemplate.Custom:
+            @CustomTemplate(result)
+            break;
+    }
 }
 
 @code {
     [Parameter]
+    public WeatherWidgetTemplate Template { get; set; }
+    [Parameter]
+    public RenderFragment<WeatherGetResult> CustomTemplate { get; set; }
+
+    [Parameter]
     public string CurrentCity { get; set; } = "Munich, DE";
 
-    private Root root;
+    [Parameter]
+    //This provides support for two-way binding from parent component e.g. <WeatherWidget @bind-CurrentCity="@currentCity" />
+    public EventCallback<string> CurrentCityChanged { get; set; } 
+
+    private WeatherGetResult result;
     private string WarningVisibility { get; set; } = "hidden";
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        root = await service.Get(CurrentCity, "d62ef178ee8ddfd06ed6dbaedfb45c4c");
+        if(Template == WeatherWidgetTemplate.Custom && CustomTemplate == null)
+        {
+            throw new ArgumentException("CustomTemplate parameter cannot be null if Template is WeatherWidgetTemplate.Custom", nameof(CustomTemplate));
+        }
+
+        //Moved here from OnInit to reload if CurrentCity parameter changes
+        //More info on blazor lifecycle methods here
+        //https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0
+        result = await service.Get(CurrentCity,weatherWidgetSettings.Value.OpenWeatherApiKey);
     }
 
     private async Task OnSearchNewCity()
     {
-        root = null;
-        root = await service.Get(CurrentCity, "d62ef178ee8ddfd06ed6dbaedfb45c4c");
-        if (root.Base == null)
+        result = null;
+        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey);
+        //if (result.Base == null)
+        //{
+        //    //result = await service.Get("Munich, DE", weatherWidgetSettings.Value.OpenWeatherApiKey);
+        //    WarningVisibility = "visible";
+        //}
+        //else
+        //{
+        //    WarningVisibility = "hidden";
+        //}
+    }
+
+    private async Task OnCurrentCityChanged(ChangeEventArgs e)
+    {
+        CurrentCity = (string)e.Value;
+        if (CurrentCityChanged.HasDelegate)
         {
-            root = await service.Get("Munich, DE", "d62ef178ee8ddfd06ed6dbaedfb45c4c");
-            WarningVisibility = "visible";
-        }
-        else
-        {
-            WarningVisibility = "hidden";
+            //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
+            await CurrentCityChanged.InvokeAsync(CurrentCity);  
         }
     }
 }
