@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Blazor.WeatherWidget
+namespace Blazor.WeatherWidget.App
 {
     public class Program
     {

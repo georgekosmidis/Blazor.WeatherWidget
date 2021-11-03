@@ -1,5 +1,6 @@
 ﻿@using Blazor.WeatherWidget.Services
-@using Blazor.WeatherWidget.Shared.Weather.OpenWeatherMap.Models;
+@using Blazor.WeatherWidget.Models;
+
 
 @inject WeatherService service
 
@@ -104,13 +105,14 @@ else
                 </div>
             </div>
             <div class="col-4 align-content-end">
-                <input class="form-control form-control-sm" value="@CurrentCity" type="text" placeholder="City / Place" @oninput="@((e) => { CurrentCity=(string)e.Value;})">
+                <input class="form-control form-control-sm" value="@CurrentCity" type="text" placeholder="City / Place" @oninput="@((e) => { CurrentCity = (string)e.Value;})">
             </div>
             <div class="col-2 small">
                 <button class="btn btn-info" type="button" @onclick="OnSearchNewCity">Go!</button>
             </div>
         </div>
     </div>
+
 }
 
 @code {

@@ -1,10 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Blazor.WeatherWidget.Shared.Weather.OpenWeatherMap.Models
+namespace Blazor.WeatherWidget.Models
 {
     public class Root
     {

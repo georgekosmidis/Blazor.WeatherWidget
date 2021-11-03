@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using Blazor.WeatherWidget.Services;
 
-namespace Blazor.WeatherWidget
+namespace Blazor.WeatherWidget.App
 {
     public class Startup
     {
@@ -24,13 +22,10 @@ namespace Blazor.WeatherWidget
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddHttpClient<WeatherService>()
-                    .SetHandlerLifetime(TimeSpan.FromMinutes(5));
-
-
+            services.AddWeatherWidgetServices(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the HTT// request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

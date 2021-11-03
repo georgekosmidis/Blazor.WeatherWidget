@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Globalization;
 
-namespace Blazor.WeatherWidget.Shared.Weather.OpenWeatherMap.Models
+namespace Blazor.WeatherWidget.Models
 {
     public class Weather
     {
@@ -14,7 +14,7 @@ namespace Blazor.WeatherWidget.Shared.Weather.OpenWeatherMap.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        public string Custom_Description => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Description.ToLower());
+        public string Custom_Description => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.Description.ToLower());
 
         [JsonProperty("icon")]
         public string Icon { get; set; }

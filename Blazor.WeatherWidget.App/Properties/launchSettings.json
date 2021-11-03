@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Blazor.WeatherWidget": {
+    "Blazor.WeatherWidget.App": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
