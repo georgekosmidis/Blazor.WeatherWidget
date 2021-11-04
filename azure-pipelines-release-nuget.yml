@@ -7,7 +7,7 @@ trigger:
 - release/*
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Windows-latest'
 
 steps:
     
