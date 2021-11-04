@@ -39,7 +39,7 @@ steps:
 - task: PublishPipelineArtifact@1
   displayName: 'Artifacts'
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    targetPath: '$(Build.BinariesDirectory)'
     artifact: '$(Build.BuildId).zip'
     publishLocation: 'pipeline'
 
