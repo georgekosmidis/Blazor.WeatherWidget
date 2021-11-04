@@ -39,7 +39,6 @@ steps:
     packagesToPack: 'Blazor.WeatherWidget/Blazor.WeatherWidget.csproj'
     configuration: '$(buildConfiguration)'
     versioningScheme: 'off'
-    buildProperties: '--output $(Build.ArtifactStagingDirectory)/'
 
 - task: NuGetCommand@2
   displayName: 'NuGet Push'
