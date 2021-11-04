@@ -28,10 +28,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
 
 - task: ArchiveFiles@2
   inputs:
@@ -47,4 +43,4 @@ steps:
     azureSubscription: 'Pay-As-You-Go(4bb05423-80e3-404d-86f3-59bcbc47a7e7)'
     appType: 'webApp'
     WebAppName: 'Blazor-WeatherWidget'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    packageForLinux: '$(build.artifactStagingDirectory)/*'
