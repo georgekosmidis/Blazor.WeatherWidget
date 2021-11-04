@@ -31,6 +31,7 @@ The end result will be similar to this one:
 
 ## User Defined Template
 (Thanks [@stavroskasidis](https://github.com/stavroskasidis))
+
 You can create your own template and pass it on for parsing. Follows a sample that uses the basic properties:
 
 ### Sample Template
