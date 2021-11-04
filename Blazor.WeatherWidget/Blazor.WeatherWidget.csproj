@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>George Kosmidis</Authors>
+    <Company />
+    <PackageProjectUrl>https://blazor-weatherwidget.azurewebsites.net/</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>A simple component in Blazor that displays the current weather, featuring a default and a user defined template</Description>
+    <PackageIcon>weather.png</PackageIcon>
+    <PackageIconUrl />
+    <Copyright>George Kosmidis</Copyright>
+    <RepositoryUrl>https://github.com/georgekosmidis/Blazor.WeatherWidget</RepositoryUrl>
+    <PackageTags>Blazor, Component, Weather</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +35,13 @@
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\_art\weather.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
