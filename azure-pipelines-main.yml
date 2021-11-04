@@ -10,9 +10,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug'
+  buildConfiguration: 'Release'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -21,7 +20,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration Debug --output $(Build.ArtifactStagingDirectory)/'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -30,3 +29,20 @@ steps:
     appType: 'webAppLinux'
     WebAppName: 'Blazor-WeatherWidget'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+
+- task: DotNetCoreCLI@2
+  displayName: Pack
+  inputs:
+    command: 'pack'
+    packagesToPack: 'Blazor.WeatherWidget/Blazor.WeatherWidget.csproj'
+    configuration: '$(buildConfiguration)'
+    versioningScheme: 'off'
+    buildProperties: '--output $(Build.ArtifactStagingDirectory)/'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet Push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget'
