@@ -15,7 +15,7 @@ steps:
   displayName: Pack
   inputs:
     command: 'pack'
-    packagesToPack: 'Blazor.WeatherWidget.csproj/Blazor.WeatherWidget.csproj'
+    packagesToPack: 'Blazor.WeatherWidget/Blazor.WeatherWidget.csproj'
     configuration: 'Release'
     versioningScheme: 'off'
 
