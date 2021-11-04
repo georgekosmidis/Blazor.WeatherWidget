@@ -12,35 +12,16 @@ pool:
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
 
 steps:
 - task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-  displayName: NugetRestore
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--configuration Release'
-
-- task: DotNetCoreCLI@2
-  displayName: Test
-  inputs:
-    command: 'test'
-    projects: '**/*.Tests.csproj'
-    arguments: '--configuration Release'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--output $(Build.ArtifactStagingDirectory)/'
+    arguments: '--configuration Debug --output $(Build.ArtifactStagingDirectory)/'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
