@@ -14,7 +14,7 @@ namespace Blazor.WeatherWidget
                 configuration.GetSection(nameof(WeatherWidgetSettings))
             );
 
-            services.AddHttpClient<WeatherService>()
+            services.AddHttpClient<IWeatherService,WeatherService>()
                     .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
             return services;
