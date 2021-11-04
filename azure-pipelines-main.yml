@@ -29,18 +29,10 @@ steps:
     configuration: '$(buildConfiguration)'
 
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Pay-As-You-Go(4bb05423-80e3-404d-86f3-59bcbc47a7e7)'
     appType: 'webApp'
     WebAppName: 'Blazor-WeatherWidget'
-    packageForLinux: '$(build.artifactStagingDirectory)/*.nupkg'
+    packageForLinux: '$(build.artifactStagingDirectory)/*.zip'
