@@ -1,52 +1,34 @@
 ﻿@page "/"
 @using Blazor.WeatherWidget
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <div style="width: 450px;" class="border border-secondary bg-light rounded shadow-lg p-3 mb-5">
-                    <WeatherWidget CurrentCity="Munich, DE" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div style="width: 450px;" class="float-left border border-secondary bg-light rounded shadow-lg p-3 mb-5">
-                    <WeatherWidget CurrentCity="London, UK" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div style="width: 450px;" class="float-left border border-secondary bg-light rounded shadow-lg p-3 mb-5">
-                    <WeatherWidget CurrentCity="New York, US" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div style="width: 450px;" class="float-left border border-secondary bg-light rounded shadow-lg p-3 mb-5">
-                    <WeatherWidget @bind-CurrentCity="@FourthCity" />
-                    City (Two-way binding test): @FourthCity
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2>Default Template</h2>
+            <div style="width: 450px;" class="border border-secondary bg-light rounded shadow-lg p-3 mb-5">
+                <WeatherWidget CurrentCity="Munich, DE" />
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm">
-                <WeatherWidget CurrentCity="Athens, GR" Template="Models.WeatherWidgetTemplate.Custom">
-                    <CustomTemplate>
-                       <div class="card text-center">
-                          <div class="card-header">
-                            Weather for @context.Name, @context.Sys.Country (custom template)
-                          </div>
-                          <div class="card-body">
-                            <h5 class="card-title">@Math.Round(context.Main.Custom_Temp_Celcius, 1)&nbsp;°C</h5>
-                            <p class="card-text">@context.Custom_Dt</p>
-                          </div>
-                          <div class="card-footer text-muted">
-                            @context.Weather[0].Custom_Description with @context.Wind.Custom_WindName coming from @context.Wind.Custom_Direction
-                          </div>
+        <div class="col-sm">
+            <h2>User Defined Template</h2>
+            <WeatherWidget CurrentCity="Munich, DE" Template="Models.WeatherWidgetTemplate.Custom">
+                <CustomTemplate>
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Weather for @context.CityName, @context.Sys.Country
                         </div>
-                    </CustomTemplate>
-                </WeatherWidget>
-            </div>
+                        <div class="card-body">
+                            <img src="@context.Weather[0].DefaultIcon" />
+                            <h5 class="card-title">@Math.Round(context.Main.Temperature, 1)&nbsp;°C</h5>
+                            <p class="card-text">@context.DateTimeLocal</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            @context.Weather[0].Description with @context.Wind.Description coming from @context.Wind.NamedDirection
+                        </div>
+                    </div>
+                </CustomTemplate>
+            </WeatherWidget>
         </div>
     </div>
 
-@code{
-    private string FourthCity { get; set; } = "Tokyo, Japan";
-}
+</div>

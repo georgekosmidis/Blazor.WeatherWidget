@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Blazor.WeatherWidget.Models;
-using System.Net.Http.Json;
 
 namespace Blazor.WeatherWidget.Services
 {
@@ -15,21 +14,21 @@ namespace Blazor.WeatherWidget.Services
             _httpClient = httpClient;
         }
 
-        public async Task<WeatherGetResult> Get(string query, string key)
+        public async Task<WeatherGetResult> Get(string query, string key, string unit)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"http://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"http://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}&units={unit}");
 
             request.Headers.Add("User-Agent", "Blazor.WeatherWidget");
-            request.Headers.Add("X-Code-Source", "https://www.github.com/...");
+            request.Headers.Add("X-Code-Source", "https://github.com/georgekosmidis/Blazor.WeatherWidget");
 
             var response = await _httpClient.SendAsync(request);
 
             var result = new WeatherGetResult();
             if (response.IsSuccessStatusCode)
             {
-                result = await response.Content.ReadFromJsonAsync<WeatherGetResult>();
+                var json = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<WeatherGetResult>(json);
             }
-
             return result;
         }
     }

@@ -14,9 +14,9 @@ namespace Blazor.WeatherWidget.Models
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        public string Custom_Description => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(this.Description.ToLower());
-
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
+        public string DefaultIcon => $"http://openweathermap.org/img/wn/{Icon}@2x.png";
     }
 }

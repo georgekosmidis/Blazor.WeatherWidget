@@ -6,9 +6,9 @@ namespace Blazor.WeatherWidget.Models
     public class Coord
     {
         [JsonProperty("lon")]
-        public double Lon { get; set; }
+        public double Longitute { get; set; }
 
         [JsonProperty("lat")]
-        public double Lat { get; set; }
+        public double Latitude { get; set; }
     }
 }

@@ -14,7 +14,7 @@
         {
             <div class="row align-items-center align-content-center">
                 <div class="col-12 fs-4">
-                    Current Weather for @result.Name, @result.Sys.Country
+                    Current Weather for @result.CityName, @result.Sys.Country
                 </div>
             </div>
             <div class="row align-items-center align-content-end">
@@ -22,18 +22,18 @@
 
                 </div>
                 <div class="col-5 small text-secondary">
-                    @result.Custom_Dt
+                    @result.DateTimeLocal
                 </div>
-            </div>        
+            </div>
             <div class="row align-items-center">
                 <div class="col-3">
-                    <img src="http://openweathermap.org/img/wn/@result.Weather[0].Icon@@2x.png" width="90" />
+                    <img src="@result.Weather[0].DefaultIcon" width="90" />
                 </div>
                 <div class="col-3 fs-3">
-                    @Math.Round(result.Main.Custom_Temp_Celcius, 1)&nbsp;°C
+                    @Math.Round(result.Main.Temperature, 1)&nbsp;°C
                 </div>
                 <div class="col-6 small">
-                    @result.Weather[0].Custom_Description with @result.Wind.Custom_WindName coming from @result.Wind.Custom_Direction
+                    @result.Weather[0].Description,  @result.Wind.Description coming from @result.Wind.NamedDirection
                 </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
                                 :
                             </div>
                             <div class="col-3 small">
-                                @Math.Round(result.Main.Custom_FeelsLike_Celcius, 1)&nbsp;°C
+                                @Math.Round(result.Main.FeelsLike, 1)&nbsp;°C
                             </div>
                             <div class="col-2 small">
 
@@ -75,7 +75,7 @@
                                 :
                             </div>
                             <div class="col-3 small">
-                                @result.Clouds.All%
+                                @result.Clouds.Coverage%
                             </div>
                             <div class="col-2 small">
 
@@ -99,7 +99,7 @@
                 </div>
             </div>
         }
-            <div class="row align-items-center align-content-end">
+        <div class="row align-items-center align-content-end">
             <div class="col-6">
                 <div role="alert" class="text-danger small" style="visibility:@(result.Base == null ? "visible" : "hidden" )">
                     Place not found!
@@ -113,7 +113,7 @@
             </div>
         </div>
     </div>;
-    }
+}
 
 @if (result == null)
 {
@@ -142,15 +142,17 @@ else
     public string CurrentCity { get; set; } = "Munich, DE";
 
     [Parameter]
+    public string Unit { get; set; } = "metric";
+
+    [Parameter]
     //This provides support for two-way binding from parent component e.g. <WeatherWidget @bind-CurrentCity="@currentCity" />
-    public EventCallback<string> CurrentCityChanged { get; set; } 
+    public EventCallback<string> CurrentCityChanged { get; set; }
 
     private WeatherGetResult result;
-    private string WarningVisibility { get; set; } = "hidden";
 
     protected override async Task OnParametersSetAsync()
     {
-        if(Template == WeatherWidgetTemplate.Custom && CustomTemplate == null)
+        if (Template == WeatherWidgetTemplate.Custom && CustomTemplate == null)
         {
             throw new ArgumentException("CustomTemplate parameter cannot be null if Template is WeatherWidgetTemplate.Custom", nameof(CustomTemplate));
         }
@@ -158,22 +160,13 @@ else
         //Moved here from OnInit to reload if CurrentCity parameter changes
         //More info on blazor lifecycle methods here
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0
-        result = await service.Get(CurrentCity,weatherWidgetSettings.Value.OpenWeatherApiKey);
+        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
     }
 
     private async Task OnSearchNewCity()
     {
         result = null;
-        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey);
-        //if (result.Base == null)
-        //{
-        //    //result = await service.Get("Munich, DE", weatherWidgetSettings.Value.OpenWeatherApiKey);
-        //    WarningVisibility = "visible";
-        //}
-        //else
-        //{
-        //    WarningVisibility = "hidden";
-        //}
+        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
     }
 
     private async Task OnCurrentCityChanged(ChangeEventArgs e)
@@ -182,7 +175,7 @@ else
         if (CurrentCityChanged.HasDelegate)
         {
             //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
-            await CurrentCityChanged.InvokeAsync(CurrentCity);  
+            await CurrentCityChanged.InvokeAsync(CurrentCity);
         }
     }
 }
