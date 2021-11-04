@@ -5,10 +5,10 @@ A simple component in Blazor that displays the current weather, featuring a defa
 ## Default Template
 ![Weather.Widget](_readme/weatherwidget.png)
 
-## User Defined Template
-(Thanks @stavroskasidis)
+##User Defined Template
+(Thanks [@stavroskasidis](https://github.com/stavroskasidis))
 
-### Sample Template
+###Sample Template
 
 ```csharp
     <WeatherWidget CurrentCity="Munich, DE" Template="Models.WeatherWidgetTemplate.Custom">
@@ -29,7 +29,7 @@ A simple component in Blazor that displays the current weather, featuring a defa
         </CustomTemplate>
     </WeatherWidget>
 ```
-### Available Properties
+###Available Properties
 A user can create a custom template to consume all available properties:
 
 *   `Coord`
