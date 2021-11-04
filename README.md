@@ -3,10 +3,34 @@
 A simple component in Blazor that displays the current weather, featuring a default and a user defined template
 
 ## Default Template
+Nothing much to do, just add a reference to the `Blazor.WeatherWidget` and then add the following code in your razor page:
+```csharp
+    @using Blazor.WeatherWidget
+    <!-- ...  -->
+   <WeatherWidget CurrentCity="Munich, DE" />
+   <!-- ...  -->
+```
+By default the metric system will be used for all values. If you prefer the imperial system then use
+```csharp
+    @using Blazor.WeatherWidget
+    <!-- ...  -->
+   <WeatherWidget CurrentCity="Munich, DE" Unit="imperial" />
+   <!-- ...  -->
+```
+
+> **Note**:
+ The default template has a dependenxy on bootstrap, so if you want to use it, please add bootstap in your `_Host.cshtml`:
+
+ ```html
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+ ```
+
+The end result will be similar to this one:
 ![Weather.Widget](_readme/weatherwidget.png)
 
 ## User Defined Template
 (Thanks [@stavroskasidis](https://github.com/stavroskasidis))
+You can create your own template and pass it on for parsing. Follows a sample that uses the basic properties:
 
 ### Sample Template
 
@@ -29,6 +53,9 @@ A simple component in Blazor that displays the current weather, featuring a defa
         </CustomTemplate>
     </WeatherWidget>
 ```
+As with the default template, if you want imperical units, add this to the `WeatherWidget` tag: `Unit="imperial" `
+ 
+
 ### Available Properties
 A user can create a custom template to consume all available properties:
 
