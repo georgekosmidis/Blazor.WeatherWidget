@@ -17,12 +17,14 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: DotNetCoreCLI@2
+  displayName: Publish
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/'
 
 - task: AzureRmWebAppDeployment@4
+  displayName: Azure Push
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Pay-As-You-Go(4bb05423-80e3-404d-86f3-59bcbc47a7e7)'
