@@ -36,20 +36,11 @@ steps:
     projects: '**/*.Tests.csproj'
     arguments: '--configuration Release'
 
-- task: PublishPipelineArtifact@1
-  displayName: 'Artifacts'
+- task: DotNetCoreCLI@2
   inputs:
-    targetPath: '$(Build.BinariesDirectory)'
-    artifact: '$(Build.BuildId).zip'
-    publishLocation: 'pipeline'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Pipeline.Workspace)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--output $(Build.ArtifactStagingDirectory)/'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -57,4 +48,4 @@ steps:
     azureSubscription: 'Pay-As-You-Go(4bb05423-80e3-404d-86f3-59bcbc47a7e7)'
     appType: 'webAppLinux'
     WebAppName: 'Blazor-WeatherWidget'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
