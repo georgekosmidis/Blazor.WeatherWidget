@@ -33,6 +33,6 @@ steps:
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Pay-As-You-Go(4bb05423-80e3-404d-86f3-59bcbc47a7e7)'
-    appType: 'webApp'
+    appType: 'webAppLinux'
     WebAppName: 'Blazor-WeatherWidget'
-    packageForLinux: '$(build.artifactStagingDirectory)/*.zip'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
