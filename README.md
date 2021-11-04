@@ -5,24 +5,24 @@ A simple component in Blazor that displays the current weather, featuring a defa
 ## Default Template
 Nothing much to do, just add a reference to the `Blazor.WeatherWidget` and then add the following code in your razor page:
 ```csharp
-    @using Blazor.WeatherWidget
-    <!-- ...  -->
-   <WeatherWidget CurrentCity="Munich, DE" />
-   <!-- ...  -->
+@using Blazor.WeatherWidget
+<!-- ...  -->
+<WeatherWidget CurrentCity="Munich, DE" />
+<!-- ...  -->
 ```
 By default the metric system will be used for all values. If you prefer the imperial system then use
 ```csharp
-    @using Blazor.WeatherWidget
-    <!-- ...  -->
-   <WeatherWidget CurrentCity="Munich, DE" Unit="imperial" />
-   <!-- ...  -->
+@using Blazor.WeatherWidget
+<!-- ...  -->
+<WeatherWidget CurrentCity="Munich, DE" Unit="imperial" />
+<!-- ...  -->
 ```
 
 > **Note**:
  The default template has a dependenxy on bootstrap, so if you want to use it, please add bootstap in your `_Host.cshtml`:
 
  ```html
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
  ```
 
 The end result will be similar to this one:
@@ -37,23 +37,23 @@ You can create your own template and pass it on for parsing. Follows a sample th
 ### Sample Template
 
 ```csharp
-    <WeatherWidget CurrentCity="Munich, DE" Template="Models.WeatherWidgetTemplate.Custom">
-        <CustomTemplate>
-            <div class="card text-center">
-                <div class="card-header">
-                    Weather for @context.CityName, @context.Sys.Country
-                </div>
-                <div class="card-body">
-                    <img src="@context.Weather[0].DefaultIcon" />
-                    <h5 class="card-title">@Math.Round(context.Main.Temperature, 1)&nbsp;°C</h5>
-                    <p class="card-text">@context.DateTimeLocal</p>
-                </div>
-                <div class="card-footer text-muted">
-                    @context.Weather[0].Description with @context.Wind.Description coming from @context.Wind.NamedDirection
-                </div>
+<WeatherWidget CurrentCity="Munich, DE" Template="Models.WeatherWidgetTemplate.Custom">
+    <CustomTemplate>
+        <div class="card text-center">
+            <div class="card-header">
+                Weather for @context.CityName, @context.Sys.Country
             </div>
-        </CustomTemplate>
-    </WeatherWidget>
+            <div class="card-body">
+                <img src="@context.Weather[0].DefaultIcon" />
+                <h5 class="card-title">@Math.Round(context.Main.Temperature, 1)&nbsp;°C</h5>
+                <p class="card-text">@context.DateTimeLocal</p>
+            </div>
+            <div class="card-footer text-muted">
+                @context.Weather[0].Description with @context.Wind.Description coming from @context.Wind.NamedDirection
+            </div>
+        </div>
+    </CustomTemplate>
+</WeatherWidget>
 ```
 As with the default template, if you want imperical units, add this to the `WeatherWidget` tag: `Unit="imperial" `
  
