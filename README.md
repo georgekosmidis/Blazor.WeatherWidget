@@ -3,6 +3,9 @@
 
 A simple component in Blazor that displays the current weather, featuring a default and a user defined template
 
+Live Sample: https://blazor-weatherwidget.azurewebsites.net/
+Nuget: https://www.nuget.org/packages/Blazor.WeatherWidget
+
 ## Default Template
 Nothing much to do, just add a reference to the `Blazor.WeatherWidget` and then add the following code in your razor page:
 ```csharp
