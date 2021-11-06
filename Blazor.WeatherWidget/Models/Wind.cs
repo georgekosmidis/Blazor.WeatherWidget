@@ -17,18 +17,18 @@ namespace Blazor.WeatherWidget.Models
             get
             {
                 if (Speed >= 0 && Speed <= 0.2) { return "calm"; } 
-                else if (Speed >= 0.3 && Speed <= 1.5) { return "light air"; }
-                else if (Speed >= 1.6 && Speed <= 3.3) { return "light breeze"; }
-                else if (Speed >= 3.4 && Speed <= 5.4) { return "gentle breeze"; }
-                else if (Speed >= 5.5 && Speed <= 7.9) { return "moderate breeze"; }
-                else if (Speed >= 8.0 && Speed <= 10.7) { return "fresh breeze"; }
-                else if (Speed >= 10.8 && Speed <= 13.8) { return "strong breeze"; }
-                else if (Speed >= 13.9 && Speed <= 17.1) { return "near gale"; }
-                else if (Speed >= 17.2 && Speed <= 20.7) { return "gale"; }
-                else if (Speed >= 20.8 && Speed <= 24.4) { return "severe gale"; }
-                else if (Speed >= 24.5 && Speed <= 28.4) { return "strong storms"; }
-                else if (Speed >= 28.5 && Speed <= 32.6) { return "violent storms"; }
-                else { return "Hurricanes"; }
+                else if (Speed > 0.2 && Speed <= 1.5) { return "light air"; }
+                else if (Speed > 1.5 && Speed <= 3.3) { return "light breeze"; }
+                else if (Speed > 3.3 && Speed <= 5.4) { return "gentle breeze"; }
+                else if (Speed > 5.4 && Speed <= 7.9) { return "moderate breeze"; }
+                else if (Speed > 7.9 && Speed <= 10.7) { return "fresh breeze"; }
+                else if (Speed > 10.7 && Speed <= 13.8) { return "strong breeze"; }
+                else if (Speed > 13.8 && Speed <= 17.1) { return "near gale"; }
+                else if (Speed > 17.1 && Speed <= 20.7) { return "gale"; }
+                else if (Speed > 20.7 && Speed <= 24.4) { return "severe gale"; }
+                else if (Speed > 24.4 && Speed <= 28.4) { return "strong storms"; }
+                else if (Speed > 28.4 && Speed <= 32.6) { return "violent storms"; }
+                else { return "hurricanes"; }
             }
         }
         public string NamedDirection
