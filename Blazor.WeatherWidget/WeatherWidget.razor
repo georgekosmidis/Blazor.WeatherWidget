@@ -135,6 +135,7 @@ else
 @code {
     [Parameter]
     public WeatherWidgetTemplate Template { get; set; }
+
     [Parameter]
     public RenderFragment<WeatherGetResult> CustomTemplate { get; set; }
 
@@ -160,13 +161,13 @@ else
         //Moved here from OnInit to reload if CurrentCity parameter changes
         //More info on blazor lifecycle methods here
         //https://docs.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-5.0
-        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
+        result = await service.GetAsync(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
     }
 
     private async Task OnSearchNewCity()
     {
         result = null;
-        result = await service.Get(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
+        result = await service.GetAsync(CurrentCity, weatherWidgetSettings.Value.OpenWeatherApiKey, Unit);
     }
 
     private async Task OnCurrentCityChanged(ChangeEventArgs e)

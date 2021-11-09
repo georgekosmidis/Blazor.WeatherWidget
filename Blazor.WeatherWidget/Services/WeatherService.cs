@@ -14,7 +14,7 @@ namespace Blazor.WeatherWidget.Services
             _httpClient = httpClient;
         }
 
-        public async Task<WeatherGetResult> Get(string query, string key, string unit)
+        public async Task<WeatherGetResult> GetAsync(string query, string key, string unit)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"http://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}&units={unit}");
 

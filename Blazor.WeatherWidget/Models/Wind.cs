@@ -31,7 +31,8 @@ namespace Blazor.WeatherWidget.Models
                 else { return "hurricanes"; }
             }
         }
-        public string NamedDirection
+
+        public string ShortNamedDirection
         {
             get
             {
@@ -51,6 +52,48 @@ namespace Blazor.WeatherWidget.Models
                 else if (Degrees >= 303.75 && Degrees < 326.25) { return "NW"; }
                 else if (Degrees >= 326.25 && Degrees < 348.75) { return "NNW"; }
                 else { return "N"; }
+            }
+        }
+
+        public string NamedDirection
+        {
+            get
+            {
+                switch (ShortNamedDirection)
+                {
+                    case "NNE":
+                        return "North-North-East";
+                    case "NE":
+                        return "North-East";
+                    case "ENE":
+                        return "East-North-East";
+                    case "E":
+                        return "East";
+                    case "ESE":
+                        return "East-South-East";
+                    case "SE":
+                        return "South-East";
+                    case "SSE":
+                        return "South-South-East";
+                    case "S":
+                        return "South";
+                    case "SSW":
+                        return "South-South-West";
+                    case "SW":
+                        return "South-West";
+                    case "WSW":
+                        return "West-South-West";
+                    case "W":
+                        return "West";
+                    case "WNW":
+                        return "West-North-West";
+                    case "NW":
+                        return "North-West";
+                    case "NNW":
+                        return "North-North-West";
+                    default:
+                        return "North";
+                }
             }
         }
     }

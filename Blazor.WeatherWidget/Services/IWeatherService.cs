@@ -5,6 +5,6 @@ namespace Blazor.WeatherWidget.Services
 {
     public interface IWeatherService
     {
-        Task<WeatherGetResult> Get(string query, string key, string unit);
+        Task<WeatherGetResult> GetAsync(string query, string key, string unit);
     }
 }

@@ -90,7 +90,8 @@ A user can create a custom template to consume all available properties:
     *   `Wind.Degrees` Wind direction, degrees (meteorological)
     *   `Wind.Gusts` Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
     *   `Wind.Description` Description of the Wind speed
-    *   `Wind.NamedDirection` Description of the Wind direction    
+    *   `Wind.NamedDirection` Description of the Wind direction, e.g. East-North-East
+    *   `Wind.ShortNamedDirection` Description of the Wind direction e.g. ENE       
 *   `Clouds`
     *   `Clouds.Coverage` Cloudiness, %
 *   `Rain`
