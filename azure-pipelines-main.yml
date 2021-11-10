@@ -16,12 +16,19 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: Markdown2Html@3
+  inputs:
+    mode: 'singleFile'
+    markdownPath: '$(Build.SourcesDirectory)\README.md'
+    htmlPath: '$(Build.SourcesDirectory)\Blazor.WeatherWidget.App\Shared\Readme.razor'
+
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/'
+
 
 - task: AzureRmWebAppDeployment@4
   displayName: Azure Push
