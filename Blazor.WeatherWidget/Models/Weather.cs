@@ -17,6 +17,6 @@ namespace Blazor.WeatherWidget.Models
         [JsonProperty("icon")]
         public string Icon { get; set; }
 
-        public string DefaultIcon => $"http://openweathermap.org/img/wn/{Icon}@2x.png";
+        public string DefaultIcon => $"https://openweathermap.org/img/wn/{Icon}@2x.png";
     }
 }
