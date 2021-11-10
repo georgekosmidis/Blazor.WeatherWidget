@@ -8,7 +8,7 @@
             Welcome to the Weather Widget Component sample page.
             The left one is the default template and the right one is a user-defined template based on <a href="https://getbootstrap.com/docs/4.0/components/card/" target="_blank">bootstrap cards</a>.
             Check the
-            <a href="https://github.com/georgekosmidis/Blazor.WeatherWidget/blob/main/Blazor.WeatherWidget/WeatherWidget.razor" target="_blank">source code</a> 
+            <a href="https://github.com/georgekosmidis/Blazor.WeatherWidget/blob/main/Blazor.WeatherWidget/WeatherWidget.razor" target="_blank">source code</a>
             to witness the agility of the custom templates.
             <br /><br />
             Scroll down for the instructions or visit <a href="https://github.com/georgekosmidis/Blazor.WeatherWidget" target="_blank">Github</a>. Install it as <a href="https://www.nuget.org/packages/Blazor.WeatherWidget/" target="_blank">nuget package</a>: <code>dotnet add package Blazor.WeatherWidget</code>
@@ -49,8 +49,21 @@
     </div>
 
 </div>
+
 <div class="container">
-    <Readme />
+    <div class="row">
+        <div class="col-xl">
+            <h1>Parsed readme file</h1>
+            Using Azure Devops pipelines <a href="https://github.com/georgekosmidis/Blazor.WeatherWidget/blob/main/README.md" target="_blank">https://github.com/georgekosmidis/.../README.md</a> is parsed as html and shown below.
+            <br />If you spot any errors, visit the <a href="https://github.com/georgekosmidis/Blazor.WeatherWidget/blob/main/README.md" target="_blank">original ReadMe</a> in Gihub.
+</div>
+    </div>
+    <div class="row">
+        <div class="col-xl">
+            <Readme />
+        </div>
+    </div>
+
 </div>
 @code {
 
