@@ -38,4 +38,3 @@ steps:
     appType: 'webAppLinux'
     WebAppName: 'Blazor-WeatherWidget'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-    AppSettings: '-WeatherWidgetSettings.OpenWeatherApiKey "$(OpenWeatherMap_APIKey)"'
