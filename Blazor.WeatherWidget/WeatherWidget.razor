@@ -173,10 +173,10 @@ else
     private async Task OnCurrentCityChanged(ChangeEventArgs e)
     {
         CurrentCity = (string)e.Value;
-        //if (CurrentCityChanged.HasDelegate)
-        //{
-        //    //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
-        //    await CurrentCityChanged.InvokeAsync(CurrentCity);
-        //}
+        if (CurrentCityChanged.HasDelegate)
+        {
+            //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
+            await CurrentCityChanged.InvokeAsync(CurrentCity);
+        }
     }
 }
