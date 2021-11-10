@@ -1,5 +1,5 @@
 # Blazor.WeatherWidget
-[![Build Status](https://dev.azure.com/georgekosmidis/Blazor.WeatherWidget/_apis/build/status/Release?branchName=main)](https://dev.azure.com/georgekosmidis/Blazor.WeatherWidget/_build/latest?definitionId=35&branchName=release) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Blazor.WeatherWidget.svg?logo=nuget)](https://www.nuget.org/packages/Blazor.WeatherWidget) 
+[![Build Status](https://dev.azure.com/georgekosmidis/Blazor.WeatherWidget/_apis/build/status/Release?branchName=main)](https://dev.azure.com/georgekosmidis/Blazor.WeatherWidget/_build/latest?definitionId=35&branchName=main) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Blazor.WeatherWidget.svg?logo=nuget)](https://www.nuget.org/packages/Blazor.WeatherWidget) 
 
 A simple component in Blazor that displays the current weather, featuring a default and a user defined template
 
