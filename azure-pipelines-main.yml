@@ -20,7 +20,7 @@ steps:
   inputs:
     mode: 'singleFile'
     markdownPath: '$(Build.SourcesDirectory)\README.md'
-    htmlPath: '$(Build.SourcesDirectory)\Blazor.WeatherWidget.App\Shared\Readme.razor'
+    htmlPath: '$(Build.SourcesDirectory)\Blazor.WeatherWidget.App\wwwroot\readme.html'
 
 - task: DotNetCoreCLI@2
   displayName: Publish
