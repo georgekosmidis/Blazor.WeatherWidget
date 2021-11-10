@@ -38,4 +38,4 @@ steps:
     appType: 'webAppLinux'
     WebAppName: 'Blazor-WeatherWidget'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
-    AppSettings: '-"WeatherWidgetSettings.OpenWeatherApiKey" "$(OpenWeatherMap_APIKey)"'
+    AppSettings: '-WeatherWidgetSettings.OpenWeatherApiKey $(OpenWeatherMap_APIKey) -WEBSITE_TIME_ZONE "Eastern Standard Time"'
