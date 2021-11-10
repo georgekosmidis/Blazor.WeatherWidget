@@ -17,6 +17,13 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/'
+    
+- task: DotNetCoreCLI@2
   displayName: Pack
   inputs:
     command: 'pack'
