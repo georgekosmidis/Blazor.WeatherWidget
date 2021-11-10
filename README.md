@@ -32,7 +32,7 @@ By default the metric system will be used for all values. If you prefer the impe
 
 The end result will be similar to this one:
 
-![Weather.Widget](_readme/weatherwidget.png)
+![Weather.Widget](https://raw.githubusercontent.com/georgekosmidis/Blazor.WeatherWidget/main/_readme/weatherwidget.png)
 
 ## User Defined Template
 (Thanks [@stavroskasidis](https://github.com/stavroskasidis))
