@@ -146,7 +146,7 @@ else
     public string Unit { get; set; } = "metric";
 
     [Parameter]
-    //This provides support for two-way binding from parent component e.g. <WeatherWidget @bind-CurrentCity="@currentCity" />
+    //This provides support for two-way binding from parent component e.g. <WeatherWidget @bind-CurrentCity= "@currentCity" />
     public EventCallback<string> CurrentCityChanged { get; set; }
 
     private WeatherGetResult result;
@@ -173,10 +173,10 @@ else
     private async Task OnCurrentCityChanged(ChangeEventArgs e)
     {
         CurrentCity = (string)e.Value;
-        if (CurrentCityChanged.HasDelegate)
-        {
-            //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
-            await CurrentCityChanged.InvokeAsync(CurrentCity);
-        }
+        //if (CurrentCityChanged.HasDelegate)
+        //{
+        //    //This updates parent element if it uses two-way binding. Safe to use if no callback was given.
+        //    await CurrentCityChanged.InvokeAsync(CurrentCity);
+        //}
     }
 }

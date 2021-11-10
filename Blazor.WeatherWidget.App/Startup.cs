@@ -26,7 +26,7 @@ namespace Blazor.WeatherWidget.App
                 o.DetailedErrors = true;
 #endif
             });
-
+            
             services.AddWeatherWidgetServices(Configuration);
         }
 

@@ -16,7 +16,7 @@ namespace Blazor.WeatherWidget.Services
 
         public async Task<WeatherGetResult> GetAsync(string query, string key, string unit)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"http://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}&units={unit}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://api.openweathermap.org/data/2.5/weather?q={query}&APPID={key}&units={unit}");
 
             request.Headers.Add("User-Agent", "Blazor.WeatherWidget");
             request.Headers.Add("X-Code-Source", "https://github.com/georgekosmidis/Blazor.WeatherWidget");
