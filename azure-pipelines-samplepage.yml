@@ -22,12 +22,19 @@ steps:
     markdownPath: '$(Build.SourcesDirectory)\README.md'
     htmlPath: '$(Build.SourcesDirectory)\Blazor.WeatherWidget.App\wwwroot\readme.html'
 
+- task: FileTransform@1
+  inputs:
+    folderPath: '$(Build.SourcesDirectory)/'
+    fileType: 'json'
+    targetFiles: '**/appsettings.*.json'
+
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/'
+
 
 
 - task: AzureRmWebAppDeployment@4
