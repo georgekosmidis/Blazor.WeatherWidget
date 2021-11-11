@@ -26,7 +26,7 @@ steps:
   inputs:
     folderPath: '$(System.DefaultWorkingDirectory)/'
     fileType: 'json'
-    targetFiles: '/**/appsettings.$(Release.EnvironmentName).json'
+    targetFiles: '/**/appsettings.*.json'
 
 - task: DotNetCoreCLI@2
   displayName: Publish
