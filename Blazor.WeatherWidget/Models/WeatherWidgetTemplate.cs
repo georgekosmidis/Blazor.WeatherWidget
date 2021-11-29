@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Blazor.WeatherWidget.Models;
 
-namespace Blazor.WeatherWidget.Models
+public enum WeatherWidgetTemplate
 {
-    public enum WeatherWidgetTemplate
-    {
-        DefaultBootStrap,
-        //TODO add more ?
-        Custom
-    }
+    DefaultBootStrap,
+    //TODO add more ?
+    Custom
 }

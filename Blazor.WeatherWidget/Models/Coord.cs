@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace Blazor.WeatherWidget.Models
-{
-    public class Coord
-    {
-        [JsonProperty("lon")]
-        public double Longitute { get; set; }
+namespace Blazor.WeatherWidget.Models;
 
-        [JsonProperty("lat")]
-        public double Latitude { get; set; }
-    }
+public class Coord
+{
+    [JsonProperty("lon")]
+    public double Longitute { get; set; }
+
+    [JsonProperty("lat")]
+    public double Latitude { get; set; }
 }
+

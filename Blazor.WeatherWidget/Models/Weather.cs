@@ -1,22 +1,20 @@
 ﻿using Newtonsoft.Json;
-using System.Globalization;
 
-namespace Blazor.WeatherWidget.Models
+namespace Blazor.WeatherWidget.Models;
+
+public class Weather
 {
-    public class Weather
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
+    [JsonProperty("id")]
+    public int Id { get; set; }
 
-        [JsonProperty("main")]
-        public string Main { get; set; }
+    [JsonProperty("main")]
+    public string Main { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+    [JsonProperty("description")]
+    public string Description { get; set; }
 
-        [JsonProperty("icon")]
-        public string Icon { get; set; }
+    [JsonProperty("icon")]
+    public string Icon { get; set; }
 
-        public string DefaultIcon => $"https://openweathermap.org/img/wn/{Icon}@2x.png";
-    }
+    public string DefaultIcon => $"https://openweathermap.org/img/wn/{Icon}@2x.png";
 }

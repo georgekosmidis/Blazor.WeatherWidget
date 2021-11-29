@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>George Kosmidis</Authors>
     <Company />
@@ -13,7 +13,7 @@
     <Copyright>George Kosmidis</Copyright>
     <RepositoryUrl>https://github.com/georgekosmidis/Blazor.WeatherWidget</RepositoryUrl>
     <PackageTags>Blazor, Component, Weather</PackageTags>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
   </PropertyGroup>
 
   <ItemGroup>

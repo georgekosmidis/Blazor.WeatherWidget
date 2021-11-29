@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Blazor.WeatherWidget.Models
-{
+namespace Blazor.WeatherWidget.Models;
 
     public class Clouds
     {
@@ -9,4 +8,3 @@ namespace Blazor.WeatherWidget.Models
         public int Coverage { get; set; }
     }
 
-}
