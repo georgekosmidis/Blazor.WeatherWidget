@@ -14,6 +14,12 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: UseDotNet@2
+  displayName: Install .NET 6
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'  
+    
 - task: NuGetToolInstaller@1
 
 - task: Markdown2Html@3
