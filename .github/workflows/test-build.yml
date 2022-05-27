@@ -1,0 +1,34 @@
+name: Test-Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: markdown2HTML
+        uses: ZacJW/markdown-html-action@1.1.1
+        with:
+          input_files: '[[".\README.md"]]'
+          output_files: '[".\wwwroot\readme.html"]' 
+          
+      - name: setup-dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: build-builder (component)
+        run: dotnet build ./Blazor.WeatherWidget.sln
+         
+      - name: build-builder (component)
+        run: dotnet build ./Blazor.WeatherWidget.App.sln
+        
+      - name: build-pack
+        run: dotnet pack ./Blazor.WeatherWidget/Blazor.WeatherWidget.csproj
+          
