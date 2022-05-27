@@ -17,12 +17,12 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: build-builder (component)
+      - name: dotnet-build (component sln)
         run: dotnet build ./Blazor.WeatherWidget.sln
          
-      - name: build-builder (component)
+      - name: dotnet-build (app sln)
         run: dotnet build ./Blazor.WeatherWidget.App.sln
         
-      - name: build-pack
+      - name: build-pack (component csproj)
         run: dotnet pack ./Blazor.WeatherWidget/Blazor.WeatherWidget.csproj
           
