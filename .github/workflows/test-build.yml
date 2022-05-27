@@ -11,12 +11,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: markdown2HTML
-        uses: ZacJW/markdown-html-action@1.1.1
-        with:
-          input_files: '[[".\README.md"]]'
-          output_files: '[".\wwwroot\readme.html"]' 
           
       - name: setup-dotnet
         uses: actions/setup-dotnet@v2
